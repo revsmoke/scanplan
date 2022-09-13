@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		71B6638528D0CABC00635A15 /* UnsupportedDevice.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71B6638328D0CABC00635A15 /* UnsupportedDevice.storyboard */; };
 		ACEF94B12820AD2300776A9D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEF94B02820AD2300776A9D /* AppDelegate.swift */; };
 		ACEF94B32820AD2300776A9D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEF94B22820AD2300776A9D /* SceneDelegate.swift */; };
 		ACEF94B52820AD2300776A9D /* RoomCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEF94B42820AD2300776A9D /* RoomCaptureViewController.swift */; };
@@ -19,6 +20,7 @@
 /* Begin PBXFileReference section */
 		05C7567A6B268FC70FFB0FCC /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		35A95C3C90A8D7FA01AA694A /* SampleCode.xcconfig */ = {isa = PBXFileReference; name = SampleCode.xcconfig; path = Configuration/SampleCode.xcconfig; sourceTree = "<group>"; };
+		71B6638428D0CABC00635A15 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/UnsupportedDevice.storyboard; sourceTree = "<group>"; };
 		ACEF94AD2820AD2300776A9D /* RoomPlanExampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoomPlanExampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACEF94B02820AD2300776A9D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ACEF94B22820AD2300776A9D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 				ACEF94C52820AF6600776A9D /* OnboardingViewController.swift */,
 				ACEF94B42820AD2300776A9D /* RoomCaptureViewController.swift */,
 				ACEF94B62820AD2300776A9D /* Main.storyboard */,
+				71B6638328D0CABC00635A15 /* UnsupportedDevice.storyboard */,
 				ACEF94B92820AD2400776A9D /* Assets.xcassets */,
 				ACEF94BB2820AD2400776A9D /* LaunchScreen.storyboard */,
 				ACEF94BE2820AD2400776A9D /* Info.plist */,
@@ -152,6 +155,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71B6638528D0CABC00635A15 /* UnsupportedDevice.storyboard in Resources */,
 				ACEF94BD2820AD2400776A9D /* LaunchScreen.storyboard in Resources */,
 				ACEF94BA2820AD2400776A9D /* Assets.xcassets in Resources */,
 				ACEF94B82820AD2300776A9D /* Main.storyboard in Resources */,
@@ -175,6 +179,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		71B6638328D0CABC00635A15 /* UnsupportedDevice.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				71B6638428D0CABC00635A15 /* Base */,
+			);
+			name = UnsupportedDevice.storyboard;
+			sourceTree = "<group>";
+		};
 		ACEF94B62820AD2300776A9D /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

@@ -8,4 +8,4 @@ Highlight physical structures and display text that guides a user to scan the sh
 
 ## Configure the sample code project
 
-Set the run destination to an iOS 16 device with a LiDAR Scanner. This sample app requires augmented reality so it doesn't support Simulator.
+Set the run destination to an iOS 16 device with a LiDAR Scanner. This sample app requires augmented reality, so it doesn't support Simulator.

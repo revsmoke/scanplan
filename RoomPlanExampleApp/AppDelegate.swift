@@ -6,6 +6,7 @@ The sample app's main entry point.
 */
 
 import UIKit
+import RoomPlan
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,13 +15,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
-    // MARK: UISceneSession Lifecycle
+    // MARK: UISceneSession life cycle
 
     func application(_ application: UIApplication,
                      configurationForConnecting connectingSceneSession: UISceneSession,
                      options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-        // Select a configuration to create the new scene with.
-        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
+        var configurationName = "Default Configuration"
+        if !RoomCaptureSession.isSupported {
+            configurationName = "Unsupported Device"
+        }
+        return UISceneConfiguration(name: configurationName, sessionRole: connectingSceneSession.role)
     }
 }
 
