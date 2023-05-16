@@ -1,5 +1,5 @@
 /*
-See LICENSE folder for this sample’s licensing information.
+See the LICENSE.txt file for this sample’s licensing information.
 
 Abstract:
 The sample app's main view controller that manages the scanning process.
@@ -83,11 +83,17 @@ class RoomCaptureViewController: UIViewController, RoomCaptureViewDelegate, Room
     // Alternatively, `.mesh` exports a nonparametric file and `.all`
     // exports both in a single USDZ.
     @IBAction func exportResults(_ sender: UIButton) {
-        let destinationURL = FileManager.default.temporaryDirectory.appending(path: "Room.usdz")
+        let destinationFolderURL = FileManager.default.temporaryDirectory.appending(path: "Export")
+        let destinationURL = destinationFolderURL.appending(path: "Room.usdz")
+        let capturedRoomURL = destinationFolderURL.appending(path: "Room.json")
         do {
+            try FileManager.default.createDirectory(at: destinationFolderURL, withIntermediateDirectories: true)
+            let jsonEncoder = JSONEncoder()
+            let jsonData = try jsonEncoder.encode(finalResults)
+            try jsonData.write(to: capturedRoomURL)
             try finalResults?.export(to: destinationURL, exportOptions: .parametric)
             
-            let activityVC = UIActivityViewController(activityItems: [destinationURL], applicationActivities: nil)
+            let activityVC = UIActivityViewController(activityItems: [destinationFolderURL], applicationActivities: nil)
             activityVC.modalPresentationStyle = .popover
             
             present(activityVC, animated: true, completion: nil)

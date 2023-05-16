@@ -6,6 +6,8 @@ Highlight physical structures and display text that guides a user to scan the sh
 
 - Note: This sample code project is associated with WWDC22 session [10127: Create parametric 3D room scans with RoomPlan](https://developer.apple.com/wwdc22/10127).
 
+You need to run this sample code project on a physical device.
+
 ## Configure the sample code project
 
-Set the run destination to an iOS 16 device with a LiDAR Scanner. This sample app requires augmented reality, so it doesn't support Simulator.
+Set the run destination to a device running iOS 16 or later with a LiDAR Scanner. 
