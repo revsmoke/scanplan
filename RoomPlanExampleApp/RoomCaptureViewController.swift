@@ -14,6 +14,7 @@ class RoomCaptureViewController: UIViewController, RoomCaptureViewDelegate, Room
     
     @IBOutlet var doneButton: UIBarButtonItem?
     @IBOutlet var cancelButton: UIBarButtonItem?
+    @IBOutlet var activityIndicator: UIActivityIndicatorView?
     
     private var isScanning: Bool = false
     
@@ -27,6 +28,7 @@ class RoomCaptureViewController: UIViewController, RoomCaptureViewDelegate, Room
         
         // Set up after loading the view.
         setupRoomCaptureView()
+        activityIndicator?.stopAnimating()
     }
     
     private func setupRoomCaptureView() {
@@ -69,10 +71,14 @@ class RoomCaptureViewController: UIViewController, RoomCaptureViewDelegate, Room
     // Access the final post-processed results.
     func captureView(didPresent processedResult: CapturedRoom, error: Error?) {
         finalResults = processedResult
+        self.exportButton?.isEnabled = true
+        self.activityIndicator?.stopAnimating()
     }
     
     @IBAction func doneScanning(_ sender: UIBarButtonItem) {
         if isScanning { stopSession() } else { cancelScanning(sender) }
+        self.exportButton?.isEnabled = false
+        self.activityIndicator?.startAnimating()
     }
 
     @IBAction func cancelScanning(_ sender: UIBarButtonItem) {
