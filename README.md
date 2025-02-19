@@ -2,12 +2,7 @@
 
 Highlight physical structures and display text that guides a user to scan the shape of their physical environment using a framework-provided view.
 
-## Overview
-
-- Note: This sample code project is associated with WWDC22 session [10127: Create parametric 3D room scans with RoomPlan](https://developer.apple.com/wwdc22/10127).
-
-You need to run this sample code project on a physical device.
-
-## Configure the sample code project
-
-Set the run destination to a device running iOS 16 or later with a LiDAR Scanner. 
+For more information about the app and how it works, see
+[Create a 3D model of an interior room by guiding the user through an AR experience]
+(https://developer.apple.com/documentation/roomplan/create_a_3d_model_of_an_interior_room_by_guiding_the_user_through_an_ar_experience) in the
+developer documentation.
