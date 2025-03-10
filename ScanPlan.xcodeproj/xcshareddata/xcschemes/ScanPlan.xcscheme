@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "ACEF94AC2820AD2300776A9D"
-               BuildableName = "RoomPlanExampleApp.app"
-               BlueprintName = "RoomPlanExampleApp"
-               ReferencedContainer = "container:RoomPlanExampleApp.xcodeproj">
+               BuildableName = "ScanPlan.app"
+               BlueprintName = "ScanPlan"
+               ReferencedContainer = "container:ScanPlan.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -46,9 +46,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "ACEF94AC2820AD2300776A9D"
-            BuildableName = "RoomPlanExampleApp.app"
-            BlueprintName = "RoomPlanExampleApp"
-            ReferencedContainer = "container:RoomPlanExampleApp.xcodeproj">
+            BuildableName = "ScanPlan.app"
+            BlueprintName = "ScanPlan"
+            ReferencedContainer = "container:ScanPlan.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -63,9 +63,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "ACEF94AC2820AD2300776A9D"
-            BuildableName = "RoomPlanExampleApp.app"
-            BlueprintName = "RoomPlanExampleApp"
-            ReferencedContainer = "container:RoomPlanExampleApp.xcodeproj">
+            BuildableName = "ScanPlan.app"
+            BlueprintName = "ScanPlan"
+            ReferencedContainer = "container:ScanPlan.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -16,8 +16,7 @@ class ResultsViewController: UIViewController, UITableViewDataSource, UITableVie
     /// - Parameters:
     ///   - scene: The scene to add the camera to
     ///   - isOverview: If true, positions camera for room overview; if false, positions for text viewing
-    /// - Returns: The created camera node
-    private func setupSceneCamera(for scene: SCNScene, isOverview: Bool = true) -> SCNNode {
+    private func setupSceneCamera(for scene: SCNScene, isOverview: Bool = true) {
         let camera = SCNCamera()
         let cameraNode = SCNNode()
         cameraNode.camera = camera
@@ -32,7 +31,6 @@ class ResultsViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         
         scene.rootNode.addChildNode(cameraNode)
-        return cameraNode
     }
     
     /// Sets up standard lighting for the given scene
@@ -135,16 +133,17 @@ class ResultsViewController: UIViewController, UITableViewDataSource, UITableVie
         let objectLength: CGFloat
         let chamferRadius: CGFloat
         
-        switch category {
-        case .door:
+        // Determine color and geometry based on category string to handle API changes
+        let categoryString = getCategoryName(category)
+        if categoryString == "Door" {
             color = .systemGreen
             objectLength = 0.1
             chamferRadius = 0
-        case .window:
+        } else if categoryString == "Window" {
             color = .systemCyan
             objectLength = 0.1
             chamferRadius = 0
-        default:
+        } else {
             color = .systemPurple
             objectLength = CGFloat(length)
             chamferRadius = 0.02
@@ -268,22 +267,23 @@ class ResultsViewController: UIViewController, UITableViewDataSource, UITableVie
         
         for (index, wall) in roomData.walls.enumerated() {
             // Get dimensions from the wall
-            if let dim = wall.dimensions {
-                let width = dim.width
-                let height = dim.height
-                
-                // Track maximum dimensions
-                maxX = max(maxX, width)
-                maxY = max(maxY, height)
-                
-                // Add to wall items
-                wallItems.append(MeasurementItem(
-                    name: "Wall \(index + 1)",
-                    width: width,
-                    height: height,
-                    length: 0.1 // Walls are thin
-                ))
-            }
+            // Access the dimensions components directly
+            let dimensions = wall.dimensions
+            // Use x as width and y as height for simd_float3
+            let width = dimensions.x
+            let height = dimensions.y
+            
+            // Track maximum dimensions
+            maxX = max(maxX, width)
+            maxY = max(maxY, height)
+            
+            // Add to wall items
+            wallItems.append(MeasurementItem(
+                name: "Wall \(index + 1)",
+                width: width,
+                height: height,
+                length: 0.1 // Walls are thin
+            ))
         }
         
         // Process doors, windows, and furniture
@@ -292,32 +292,33 @@ class ResultsViewController: UIViewController, UITableViewDataSource, UITableVie
         var furnitureItems: [MeasurementItem] = []
         
         for (index, object) in roomData.objects.enumerated() {
-            if let dim = object.dimensions {
-                let width = dim.width
-                let height = dim.height
-                let length = dim.length
-                
-                // Track maximum dimensions
-                maxX = max(maxX, width)
-                maxZ = max(maxZ, length)
-                
-                // Create measurement item
-                let item = MeasurementItem(
-                    name: "\(getCategoryName(object.category)) \(index + 1)",
-                    width: width,
-                    height: height,
-                    length: length
-                )
-                
-                // Categorize by object type
-                switch object.category {
-                case .door:
-                    doorItems.append(item)
-                case .window:
-                    windowItems.append(item)
-                default:
-                    furnitureItems.append(item)
-                }
+            // Access the dimensions components directly
+            let dimensions = object.dimensions
+            // Use x as width, y as height, and z as length for simd_float3
+            let width = dimensions.x
+            let height = dimensions.y
+            let length = dimensions.z
+            
+            // Track maximum dimensions
+            maxX = max(maxX, width)
+            maxZ = max(maxZ, length)
+            
+            // Create measurement item
+            let item = MeasurementItem(
+                name: "\(getCategoryName(object.category)) \(index + 1)",
+                width: width,
+                height: height,
+                length: length
+            )
+            
+            // Categorize by object type using the string name
+            let categoryString = getCategoryName(object.category)
+            if categoryString == "Door" {
+                doorItems.append(item)
+            } else if categoryString == "Window" {
+                windowItems.append(item)
+            } else {
+                furnitureItems.append(item)
             }
         }
         
@@ -355,44 +356,48 @@ class ResultsViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     private func getCategoryName(_ category: CapturedRoom.Object.Category) -> String {
-        switch category {
-        case .door:
+        // Use string description of the enum to handle API changes in iOS 18
+        let categoryString = String(describing: category)
+        
+        // Map enum description to friendly names
+        switch categoryString {
+        case _ where categoryString.contains("door"):
             return "Door"
-        case .window:
+        case _ where categoryString.contains("window"):
             return "Window"
-        case .bathtub:
+        case _ where categoryString.contains("bathtub"):
             return "Bathtub"
-        case .bed:
+        case _ where categoryString.contains("bed"):
             return "Bed"
-        case .chair:
+        case _ where categoryString.contains("chair"):
             return "Chair"
-        case .dishwasher:
+        case _ where categoryString.contains("dishwasher"):
             return "Dishwasher"
-        case .fireplace:
+        case _ where categoryString.contains("fireplace"):
             return "Fireplace"
-        case .oven:
+        case _ where categoryString.contains("oven"):
             return "Oven"
-        case .refrigerator:
+        case _ where categoryString.contains("refrigerator"):
             return "Refrigerator"
-        case .sink:
+        case _ where categoryString.contains("sink"):
             return "Sink"
-        case .sofa:
+        case _ where categoryString.contains("sofa"):
             return "Sofa"
-        case .stairs:
+        case _ where categoryString.contains("stairs"):
             return "Stairs"
-        case .storage:
+        case _ where categoryString.contains("storage"):
             return "Storage"
-        case .stove:
+        case _ where categoryString.contains("stove"):
             return "Stove"
-        case .table:
+        case _ where categoryString.contains("table"):
             return "Table"
-        case .television:
+        case _ where categoryString.contains("television"):
             return "TV"
-        case .toilet:
+        case _ where categoryString.contains("toilet"):
             return "Toilet"
-        case .washerDryer:
+        case _ where categoryString.contains("washerDryer"):
             return "Washer/Dryer"
-        @unknown default:
+        default:
             return "Unknown"
         }
     }
@@ -654,7 +659,8 @@ class ResultsViewController: UIViewController, UITableViewDataSource, UITableVie
     
     private func setupTableView() {
         // Setup table view for walls and objects with Auto Layout
-        tableView = UITableView(style: .insetGrouped)
+        let frame = CGRect(x: 0, y: 0, width: contentView.bounds.width - 32, height: 400)
+        tableView = UITableView(frame: frame, style: .insetGrouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.delegate = self
         tableView.dataSource = self
@@ -817,11 +823,12 @@ class ResultsViewController: UIViewController, UITableViewDataSource, UITableVie
         
         // Add walls
         for wall in roomData.walls {
-            guard let dim = wall.dimensions else { continue }
+            // Access the dimensions components directly
+            let dimensions = wall.dimensions
             
             let wallNode = createWallNode(
-                width: dim.width,
-                height: dim.height,
+                width: dimensions.x,  // x = width
+                height: dimensions.y, // y = height
                 transform: wall.transform
             )
             
@@ -831,23 +838,27 @@ class ResultsViewController: UIViewController, UITableViewDataSource, UITableVie
         
         // Process objects (doors, windows, furniture)
         for object in roomData.objects {
-            guard let dim = object.dimensions else { continue }
+            // Access the dimensions components directly
+            let dimensions = object.dimensions
             
             let objectNode = createRoomObjectNode(
                 category: object.category,
-                width: dim.width,
-                height: dim.height,
-                length: dim.length,
+                width: dimensions.x,   // x = width
+                height: dimensions.y,  // y = height
+                length: dimensions.z,  // z = length
                 transform: object.transform
             )
             
             scene.rootNode.addChildNode(objectNode)
             
             // Count by category for accessibility
-            switch object.category {
-            case .door: doorCount += 1
-            case .window: windowCount += 1
-            default: furnitureCount += 1
+            let categoryString = getCategoryName(object.category)
+            if categoryString == "Door" {
+                doorCount += 1
+            } else if categoryString == "Window" {
+                windowCount += 1
+            } else {
+                furnitureCount += 1
             }
         }
         
@@ -896,7 +907,9 @@ class ResultsViewController: UIViewController, UITableViewDataSource, UITableVie
     
     @objc private func viewModelButtonTapped() {
         // Present QuickLook preview of the 3D model
+        let frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
         let previewController = QLPreviewController()
+        previewController.view.frame = frame
         previewController.dataSource = self
         previewController.delegate = self
         present(previewController, animated: true)

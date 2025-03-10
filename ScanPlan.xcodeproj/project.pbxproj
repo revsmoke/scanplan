@@ -20,9 +20,9 @@
 
 /* Begin PBXFileReference section */
 		05C7567A6B268FC70FFB0FCC /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		35A95C3C90A8D7FA01AA694A /* SampleCode.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = SampleCode.xcconfig; path = Configuration/SampleCode.xcconfig; sourceTree = "<group>"; };
+		35A95C3C90A8D7FA01AA694A /* ScanPlan.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = ScanPlan.xcconfig; path = Configuration/ScanPlan.xcconfig; sourceTree = "<group>"; };
 		71B6638428D0CABC00635A15 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/UnsupportedDevice.storyboard; sourceTree = "<group>"; };
-		ACEF94AD2820AD2300776A9D /* RoomPlanExampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoomPlanExampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		ACEF94AD2820AD2300776A9D /* ScanPlan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScanPlan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACEF94B02820AD2300776A9D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ACEF94B22820AD2300776A9D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		ACEF94B42820AD2300776A9D /* RoomCaptureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomCaptureViewController.swift; sourceTree = "<group>"; };
@@ -32,7 +32,7 @@
 		ACEF94BE2820AD2400776A9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ACEF94C52820AF6600776A9D /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		CD4891E2C9F3F7012DE25B49 /* LICENSE.txt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
-		D60535562D7D9467001FC06F /* RoomPlanExampleApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RoomPlanExampleApp.entitlements; sourceTree = "<group>"; };
+		D60535562D7D9467001FC06F /* ScanPlan.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ScanPlan.entitlements; sourceTree = "<group>"; };
 		D605355B2D7E226F001FC06F /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -50,7 +50,7 @@
 		0ED4ADFE8897242ABECFB073 /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
-				35A95C3C90A8D7FA01AA694A /* SampleCode.xcconfig */,
+				35A95C3C90A8D7FA01AA694A /* ScanPlan.xcconfig */,
 			);
 			name = Configuration;
 			sourceTree = "<group>";
@@ -59,7 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				05C7567A6B268FC70FFB0FCC /* README.md */,
-				ACEF94AF2820AD2300776A9D /* RoomPlanExampleApp */,
+				ACEF94AF2820AD2300776A9D /* ScanPlan */,
 				ACEF94AE2820AD2300776A9D /* Products */,
 				0ED4ADFE8897242ABECFB073 /* Configuration */,
 				C4CB873CC14D1C6A55335C8A /* LICENSE */,
@@ -69,15 +69,15 @@
 		ACEF94AE2820AD2300776A9D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				ACEF94AD2820AD2300776A9D /* RoomPlanExampleApp.app */,
+				ACEF94AD2820AD2300776A9D /* ScanPlan.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		ACEF94AF2820AD2300776A9D /* RoomPlanExampleApp */ = {
+		ACEF94AF2820AD2300776A9D /* ScanPlan */ = {
 			isa = PBXGroup;
 			children = (
-				D60535562D7D9467001FC06F /* RoomPlanExampleApp.entitlements */,
+				D60535562D7D9467001FC06F /* ScanPlan.entitlements */,
 				ACEF94B02820AD2300776A9D /* AppDelegate.swift */,
 				ACEF94B22820AD2300776A9D /* SceneDelegate.swift */,
 				ACEF94C52820AF6600776A9D /* OnboardingViewController.swift */,
@@ -89,7 +89,7 @@
 				ACEF94BB2820AD2400776A9D /* LaunchScreen.storyboard */,
 				ACEF94BE2820AD2400776A9D /* Info.plist */,
 			);
-			path = RoomPlanExampleApp;
+			path = ScanPlan;
 			sourceTree = "<group>";
 		};
 		C4CB873CC14D1C6A55335C8A /* LICENSE */ = {
@@ -104,9 +104,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		ACEF94AC2820AD2300776A9D /* RoomPlanExampleApp */ = {
+		ACEF94AC2820AD2300776A9D /* ScanPlan */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = ACEF94C12820AD2400776A9D /* Build configuration list for PBXNativeTarget "RoomPlanExampleApp" */;
+			buildConfigurationList = ACEF94C12820AD2400776A9D /* Build configuration list for PBXNativeTarget "ScanPlan" */;
 			buildPhases = (
 				ACEF94A92820AD2300776A9D /* Sources */,
 				ACEF94AA2820AD2300776A9D /* Frameworks */,
@@ -116,9 +116,9 @@
 			);
 			dependencies = (
 			);
-			name = RoomPlanExampleApp;
+			name = ScanPlan;
 			productName = RoomPlanExampleApp;
-			productReference = ACEF94AD2820AD2300776A9D /* RoomPlanExampleApp.app */;
+			productReference = ACEF94AD2820AD2300776A9D /* ScanPlan.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -137,7 +137,7 @@
 					};
 				};
 			};
-			buildConfigurationList = ACEF94A82820AD2300776A9D /* Build configuration list for PBXProject "RoomPlanExampleApp" */;
+			buildConfigurationList = ACEF94A82820AD2300776A9D /* Build configuration list for PBXProject "ScanPlan" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -150,7 +150,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				ACEF94AC2820AD2300776A9D /* RoomPlanExampleApp */,
+				ACEF94AC2820AD2300776A9D /* ScanPlan */,
 			);
 		};
 /* End PBXProject section */
@@ -214,7 +214,7 @@
 /* Begin XCBuildConfiguration section */
 		ACEF94BF2820AD2400776A9D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 35A95C3C90A8D7FA01AA694A /* SampleCode.xcconfig */;
+			baseConfigurationReference = 35A95C3C90A8D7FA01AA694A /* ScanPlan.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -276,7 +276,7 @@
 		};
 		ACEF94C02820AD2400776A9D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 35A95C3C90A8D7FA01AA694A /* SampleCode.xcconfig */;
+			baseConfigurationReference = 35A95C3C90A8D7FA01AA694A /* ScanPlan.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -332,18 +332,19 @@
 		};
 		ACEF94C22820AD2400776A9D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 35A95C3C90A8D7FA01AA694A /* SampleCode.xcconfig */;
+			baseConfigurationReference = 35A95C3C90A8D7FA01AA694A /* ScanPlan.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = RoomPlanExampleApp/RoomPlanExampleApp.entitlements;
+				CODE_SIGN_ENTITLEMENTS = ScanPlan/ScanPlan.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 75KNXQK2UH;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = RoomPlanExampleApp/Info.plist;
+				INFOPLIST_FILE = ScanPlan/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSCameraUsageDescription = "RoomCaptureView Requires Camera Access";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -355,7 +356,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.RoomPlanExampleApp${SAMPLE_CODE_DISAMBIGUATOR}";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.ScanPlan";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
@@ -367,18 +368,19 @@
 		};
 		ACEF94C32820AD2400776A9D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 35A95C3C90A8D7FA01AA694A /* SampleCode.xcconfig */;
+			baseConfigurationReference = 35A95C3C90A8D7FA01AA694A /* ScanPlan.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = RoomPlanExampleApp/RoomPlanExampleApp.entitlements;
+				CODE_SIGN_ENTITLEMENTS = ScanPlan/ScanPlan.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 75KNXQK2UH;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = RoomPlanExampleApp/Info.plist;
+				INFOPLIST_FILE = ScanPlan/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSCameraUsageDescription = "RoomCaptureView Requires Camera Access";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -390,7 +392,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.RoomPlanExampleApp${SAMPLE_CODE_DISAMBIGUATOR}";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.ScanPlan";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
@@ -403,7 +405,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		ACEF94A82820AD2300776A9D /* Build configuration list for PBXProject "RoomPlanExampleApp" */ = {
+		ACEF94A82820AD2300776A9D /* Build configuration list for PBXProject "ScanPlan" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				ACEF94BF2820AD2400776A9D /* Debug */,
@@ -412,7 +414,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		ACEF94C12820AD2400776A9D /* Build configuration list for PBXNativeTarget "RoomPlanExampleApp" */ = {
+		ACEF94C12820AD2400776A9D /* Build configuration list for PBXNativeTarget "ScanPlan" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				ACEF94C22820AD2400776A9D /* Debug */,
