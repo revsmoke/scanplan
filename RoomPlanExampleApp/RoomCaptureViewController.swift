@@ -11,7 +11,6 @@ import RoomPlan
 class RoomCaptureViewController: UIViewController, RoomCaptureViewDelegate, RoomCaptureSessionDelegate {
     
     @IBOutlet var exportButton: UIButton?
-    
     @IBOutlet var doneButton: UIBarButtonItem?
     @IBOutlet var cancelButton: UIBarButtonItem?
     @IBOutlet var activityIndicator: UIActivityIndicatorView?
@@ -52,14 +51,12 @@ class RoomCaptureViewController: UIViewController, RoomCaptureViewDelegate, Room
     private func startSession() {
         isScanning = true
         roomCaptureView?.captureSession.run(configuration: roomCaptureSessionConfig)
-        
         setActiveNavBar()
     }
     
     private func stopSession() {
         isScanning = false
         roomCaptureView?.captureSession.stop()
-        
         setCompleteNavBar()
     }
     
@@ -73,6 +70,19 @@ class RoomCaptureViewController: UIViewController, RoomCaptureViewDelegate, Room
         finalResults = processedResult
         self.exportButton?.isEnabled = true
         self.activityIndicator?.stopAnimating()
+        
+        // *********** ADD THESE LINES ***********
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let resultsVC = storyboard.instantiateViewController(withIdentifier: "ResultsViewController")
+            as? ResultsViewController {
+            
+            // Pass the captured room data to ResultsViewController
+            resultsVC.finalRoomData = processedResult
+            
+            // Push it onto the navigation stack
+            navigationController?.pushViewController(resultsVC, animated: true)
+        }
+        // ***************************************
     }
     
     @IBAction func doneScanning(_ sender: UIBarButtonItem) {
@@ -116,7 +126,7 @@ class RoomCaptureViewController: UIViewController, RoomCaptureViewDelegate, Room
             self.cancelButton?.tintColor = .white
             self.doneButton?.tintColor = .white
             self.exportButton?.alpha = 0.0
-        }, completion: { complete in
+        }, completion: { _ in
             self.exportButton?.isHidden = true
         })
     }
@@ -130,4 +140,3 @@ class RoomCaptureViewController: UIViewController, RoomCaptureViewDelegate, Room
         }
     }
 }
-
