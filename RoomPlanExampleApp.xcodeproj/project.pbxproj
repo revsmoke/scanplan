@@ -15,7 +15,6 @@
 		ACEF94BA2820AD2400776A9D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACEF94B92820AD2400776A9D /* Assets.xcassets */; };
 		ACEF94BD2820AD2400776A9D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACEF94BB2820AD2400776A9D /* LaunchScreen.storyboard */; };
 		ACEF94C62820AF6600776A9D /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEF94C52820AF6600776A9D /* OnboardingViewController.swift */; };
-		D60535592D7E21AF001FC06F /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = D60535582D7E21AF001FC06F /* index.html */; };
 		D605355C2D7E227A001FC06F /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D605355B2D7E226F001FC06F /* ResultsViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -34,7 +33,6 @@
 		ACEF94C52820AF6600776A9D /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		CD4891E2C9F3F7012DE25B49 /* LICENSE.txt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		D60535562D7D9467001FC06F /* RoomPlanExampleApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RoomPlanExampleApp.entitlements; sourceTree = "<group>"; };
-		D60535582D7E21AF001FC06F /* index.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		D605355B2D7E226F001FC06F /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -81,7 +79,6 @@
 			children = (
 				D60535562D7D9467001FC06F /* RoomPlanExampleApp.entitlements */,
 				ACEF94B02820AD2300776A9D /* AppDelegate.swift */,
-				D60535582D7E21AF001FC06F /* index.html */,
 				ACEF94B22820AD2300776A9D /* SceneDelegate.swift */,
 				ACEF94C52820AF6600776A9D /* OnboardingViewController.swift */,
 				ACEF94B42820AD2300776A9D /* RoomCaptureViewController.swift */,
@@ -164,7 +161,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				71B6638528D0CABC00635A15 /* UnsupportedDevice.storyboard in Resources */,
-				D60535592D7E21AF001FC06F /* index.html in Resources */,
 				ACEF94BD2820AD2400776A9D /* LaunchScreen.storyboard in Resources */,
 				ACEF94BA2820AD2400776A9D /* Assets.xcassets in Resources */,
 				ACEF94B82820AD2300776A9D /* Main.storyboard in Resources */,
