@@ -159,11 +159,13 @@ class RoomCaptureViewController: UIViewController, RoomCaptureViewDelegate, Room
                              userInfo: [NSLocalizedDescriptionKey: "Failed to generate JSON data: \(error.localizedDescription)"])
             }
             
-            // Export USDZ with specific error handling
+            // Export USDZ with highest available accuracy
+            // `.all` generates both a parametric representation and the raw mesh
+            // ensuring maximum geometric fidelity for professional workflows.
             do {
-                try finalResults.export(to: destinationURL, exportOptions: .parametric)
+                try finalResults.export(to: destinationURL, exportOptions: .all)
             } catch {
-                throw NSError(domain: "AppErrorDomain", code: 102, 
+                throw NSError(domain: "AppErrorDomain", code: 102,
                              userInfo: [NSLocalizedDescriptionKey: "Failed to generate 3D model: \(error.localizedDescription)"])
             }
             
