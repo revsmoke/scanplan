@@ -50,6 +50,9 @@ class RoomCaptureViewController: UIViewController, RoomCaptureViewDelegate, Room
     
     private func startSession() {
         isScanning = true
+        // Request the highest detail level before starting the session.
+        // More detailed scans yield a denser mesh which improves architectural accuracy.
+        roomCaptureSessionConfig.detail = .high
         roomCaptureView?.captureSession.run(configuration: roomCaptureSessionConfig)
         setActiveNavBar()
     }
