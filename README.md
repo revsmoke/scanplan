@@ -14,3 +14,6 @@ provide architects with the most detailed reference possible, the export uses
 `CapturedRoom.ExportOption.all`. This option includes the parametric data and the
 raw mesh in the same USDZ file so downstream tools can choose the level of
 precision they require.
+
+## Setup
+Run `./setup.sh` to automatically install build tools like `xcodebuild` and other dependencies using `apt-get`.
