@@ -6,3 +6,16 @@ For more information about the app and how it works, see
 [Create a 3D model of an interior room by guiding the user through an AR experience]
 (https://developer.apple.com/documentation/roomplan/create_a_3d_model_of_an_interior_room_by_guiding_the_user_through_an_ar_experience) in the
 developer documentation.
+
+## Export Accuracy
+
+The app exports the captured space to both **USDZ** and **JSON** formats. To
+provide architects with the most detailed reference possible, the export uses
+`CapturedRoom.ExportOption.all`. This option includes the parametric data and the
+raw mesh in the same USDZ file so downstream tools can choose the level of
+precision they require.
+
+## Environment Setup
+
+Run `./setup.sh` before building the project to install required build tools.
+
