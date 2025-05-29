@@ -663,5 +663,4 @@ class ResultsViewController: UIViewController, UITableViewDataSource, UITableVie
         // Clean up any temporary files when this controller is deallocated
         cleanupTemporaryFiles()
     }
-    
 }
