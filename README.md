@@ -13,4 +13,4 @@ The app exports the captured space to both **USDZ** and **JSON** formats. To
 provide architects with the most detailed reference possible, the export uses
 `CapturedRoom.ExportOption.all`. This option includes the parametric data and the
 raw mesh in the same USDZ file so downstream tools can choose the level of
-precision they require.
+
