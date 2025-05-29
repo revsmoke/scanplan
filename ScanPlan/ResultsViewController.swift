@@ -990,11 +990,13 @@ class ResultsViewController: UIViewController, UITableViewDataSource, UITableVie
                              userInfo: [NSLocalizedDescriptionKey: "Failed to generate JSON data: \(error.localizedDescription)"])
             }
             
-            // Export USDZ with specific error handling
+            // Export USDZ with highest fidelity
+            // `.all` preserves both the parametric data and underlying mesh
+            // for accurate architectural reference.
             do {
-                try roomData.export(to: destinationURL, exportOptions: .parametric)
+                try roomData.export(to: destinationURL, exportOptions: .all)
             } catch {
-                throw NSError(domain: "AppErrorDomain", code: 102, 
+                throw NSError(domain: "AppErrorDomain", code: 102,
                              userInfo: [NSLocalizedDescriptionKey: "Failed to generate 3D model: \(error.localizedDescription)"])
             }
             
@@ -1055,8 +1057,8 @@ class ResultsViewController: UIViewController, UITableViewDataSource, UITableVie
                 try FileManager.default.removeItem(at: modelURL)
             }
             
-            // Export the USDZ model
-            try roomData.export(to: modelURL, exportOptions: .parametric)
+            // Export the USDZ model using `.all` for maximum detail
+            try roomData.export(to: modelURL, exportOptions: .all)
             
             // Save the URL for the QuickLook preview - ensure on main thread
             DispatchQueue.main.async { [weak self] in
