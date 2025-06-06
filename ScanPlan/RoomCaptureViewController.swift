@@ -67,15 +67,42 @@ class RoomCaptureViewController: UIViewController, RoomCaptureViewDelegate, Room
     
     // Access the final post-processed results.
     func captureView(didPresent processedResult: CapturedRoom, error: Error?) {
+        // Handle errors first
+        if let error = error {
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+
+                self.activityIndicator?.stopAnimating()
+                self.exportButton?.isEnabled = false
+
+                let alert = UIAlertController(
+                    title: "Scan Processing Error",
+                    message: "Failed to process room scan: \(error.localizedDescription)",
+                    preferredStyle: .alert
+                )
+
+                alert.addAction(UIAlertAction(title: "Try Again", style: .default) { [weak self] _ in
+                    self?.startSession()
+                })
+
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { [weak self] _ in
+                    self?.navigationController?.popViewController(animated: true)
+                })
+
+                self.present(alert, animated: true)
+            }
+            return
+        }
+
         finalResults = processedResult
-        
+
         // Ensure UI updates happen on main thread
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
-            
+
             self.exportButton?.isEnabled = true
             self.activityIndicator?.stopAnimating()
-            
+
             // Show alert with options for the user
             let alert = UIAlertController(
                 title: "Room Scan Complete",
@@ -198,9 +225,15 @@ class RoomCaptureViewController: UIViewController, RoomCaptureViewDelegate, Room
     }
     
     // Helper to show alerts
-    private func showAlert(title: String, message: String) {
+    private func showAlert(title: String, message: String, actions: [UIAlertAction] = []) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
+
+        if actions.isEmpty {
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+        } else {
+            actions.forEach { alert.addAction($0) }
+        }
+
         present(alert, animated: true)
     }
     

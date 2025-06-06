@@ -84,6 +84,9 @@ extension ResultsViewController {
     // MARK: - Memory Management
     
     deinit {
+        // Stop performance monitoring
+        stopPerformanceMonitoring()
+
         // Clean up any temporary files when this controller is deallocated
         cleanupTemporaryFiles()
     }

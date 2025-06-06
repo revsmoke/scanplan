@@ -3,7 +3,13 @@ extension ResultsViewController {
     
     /// Creates a standard base scene with correct configuration
     private func createBaseScene() -> SCNScene {
-        return SCNScene()
+        let scene = SCNScene()
+        scene.background.contents = UIColor.systemBackground
+
+        // Apply performance optimizations
+        optimizeSceneForPerformance(scene)
+
+        return scene
     }
     
     /// Sets up a camera for the given scene

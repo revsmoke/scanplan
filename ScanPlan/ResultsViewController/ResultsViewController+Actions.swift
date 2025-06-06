@@ -22,9 +22,7 @@ extension ResultsViewController {
     
     @objc private func viewModelButtonTapped() {
         // Present QuickLook preview of the 3D model
-        let frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
         let previewController = QLPreviewController()
-        previewController.view.frame = frame
         previewController.dataSource = self
         previewController.delegate = self
         present(previewController, animated: true)
@@ -57,19 +55,37 @@ extension ResultsViewController {
     
     func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
         guard let modelURL = temporaryModelURL else {
-            // Create a fallback URL instead of crashing
-            DispatchQueue.main.async { [weak self] in
-                controller.dismiss(animated: true) { [weak self] in
-                    DispatchQueue.main.async {
-                        self?.showAlert(title: "3D Model Error", message: "The 3D model is not available or failed to generate.")
-                    }
-                }
-            }
-            // Return empty file URL as fallback
-            return URL(fileURLWithPath: "") as QLPreviewItem
+            // Return a proper error document instead of empty URL
+            return createErrorPreviewItem()
         }
-        
         return modelURL as QLPreviewItem
+    }
+
+    private func createErrorPreviewItem() -> QLPreviewItem {
+        // Create a temporary text file with error message
+        let errorURL = FileManager.default.temporaryDirectory
+            .appendingPathComponent("model_error.txt")
+
+        let errorMessage = """
+        3D Model Not Available
+
+        The 3D model could not be generated or is not ready yet.
+
+        Please try the following:
+        1. Wait for the model generation to complete
+        2. Tap "View 3D Model" again
+        3. If the problem persists, try scanning the room again
+
+        For best results, ensure good lighting and move slowly during scanning.
+        """
+
+        do {
+            try errorMessage.write(to: errorURL, atomically: true, encoding: .utf8)
+        } catch {
+            print("Failed to create error preview file: \(error)")
+        }
+
+        return errorURL as QLPreviewItem
     }
     
     // Export the USDZ and JSON data - mirrors RoomCaptureViewController's exportResults
@@ -149,50 +165,61 @@ extension ResultsViewController {
             showAlert(title: "Model Generation Failed", message: "No room data available to generate model")
             return
         }
-        
+
         // Show activity indicator while generating model
-        activityIndicator?.startAnimating()
-        
+        DispatchQueue.main.async { [weak self] in
+            self?.activityIndicator?.startAnimating()
+            self?.viewModelButton.isEnabled = false
+        }
+
+        // Perform heavy work on background queue
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            self?.performModelGeneration(roomData: roomData)
+        }
+    }
+
+    private func performModelGeneration(roomData: CapturedRoom) {
         // Clean up any existing model first
         if let existingURL = temporaryModelURL, FileManager.default.fileExists(atPath: existingURL.path) {
             try? FileManager.default.removeItem(at: existingURL)
-            temporaryModelURL = nil
+            DispatchQueue.main.async { [weak self] in
+                self?.temporaryModelURL = nil
+            }
         }
-        
+
         // Create a temporary directory for the model
         let modelDirectory = FileManager.default.temporaryDirectory.appending(path: "RoomModel")
         let modelURL = modelDirectory.appending(path: "RoomPreview.usdz")
-        
+
         do {
             // Create directory if it doesn't exist
             try FileManager.default.createDirectory(at: modelDirectory, withIntermediateDirectories: true)
-            
+
             // Remove any existing file
             if FileManager.default.fileExists(atPath: modelURL.path) {
                 try FileManager.default.removeItem(at: modelURL)
             }
-            
+
             // Export the USDZ model using `.all` for maximum detail
             try roomData.export(to: modelURL, exportOptions: .all)
-            
-            // Save the URL for the QuickLook preview - ensure on main thread
+
+            // Update UI on main thread
             DispatchQueue.main.async { [weak self] in
                 self?.temporaryModelURL = modelURL
+                self?.viewModelButton.isEnabled = true
+                self?.activityIndicator?.stopAnimating()
+
+                // Post notification for accessibility
+                UIAccessibility.post(notification: .announcement, argument: "3D model generation complete")
             }
-            
-            // Enable the view model button
-            DispatchQueue.main.async {
-                self.viewModelButton.isEnabled = true
-                self.activityIndicator?.stopAnimating()
-            }
-            
+
             print("3D model generated successfully at: \(modelURL.path)")
         } catch {
             print("Error generating 3D model: \(error)")
             DispatchQueue.main.async { [weak self] in
                 self?.activityIndicator?.stopAnimating()
                 self?.viewModelButton.isEnabled = false
-                self?.showAlert(title: "Model Generation Failed", 
+                self?.showAlert(title: "Model Generation Failed",
                                message: "Failed to generate 3D model: \(error.localizedDescription)")
             }
         }
