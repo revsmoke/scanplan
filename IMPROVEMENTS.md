@@ -1,3 +1,14 @@
+# ArchiNet RoomPlan: Development Documentation
+
+This repository contains the development documentation and implementation history for ArchiNet RoomPlan, a professional room scanning application for architects.
+
+## 📋 Documentation Index
+
+- **[Product Requirements Document (PRD)](./docs/PRD.md)** - Comprehensive product roadmap and specifications
+- **[iOS Code Improvements](#ios-code-improvements-implementation)** - Technical implementation history
+
+---
+
 # iOS Code Improvements Implementation
 
 This document summarizes the improvements made to the ScanPlan (ArchiNet RoomPlan) iOS application based on the code review.
