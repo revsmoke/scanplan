@@ -167,7 +167,10 @@ extension ResultsViewController {
         sceneView.backgroundColor = .systemBackground
         sceneView.layer.cornerRadius = 12
         sceneView.clipsToBounds = true
-        sceneView.antialiasingMode = .multisampling4X
+
+        // Configure performance-optimized settings
+        configureSceneViewPerformance()
+
         contentView.addSubview(sceneView)
 
         NSLayoutConstraint.activate([
