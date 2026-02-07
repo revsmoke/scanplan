@@ -664,3 +664,4 @@ class ResultsViewController: UIViewController, UITableViewDataSource, UITableVie
         cleanupTemporaryFiles()
     }
 }
+
